@@ -1,0 +1,8 @@
+package a_Json;
+
+public class JsonSolve2 {
+	public static void main(String[] args) {
+		String filePath = "sample.json";
+		
+	}
+}

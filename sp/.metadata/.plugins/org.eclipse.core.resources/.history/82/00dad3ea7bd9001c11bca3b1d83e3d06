@@ -1,0 +1,36 @@
+package a_FileIO;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class test {
+
+	public static void main(String[] args) {
+		PrintFile("test.txt");
+	}
+	
+	static void PrintFile(String fileName) {
+		String line = null;
+		try {
+			// 입력 스트림
+			FileReader fileReader = new FileReader(fileName);
+			// 입력 스트림으로부터 문자 읽을 때 버퍼링
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			
+			// 버퍼로부터 한 줄씩 읽는데, 글이 끝날때까지 반복한다.
+			while((line = bufferedReader.readLine()) != null) {
+				StringTokenizer st = new StringTokenizer(line);
+				String str = st.nextToken();
+				System.out.println(str);
+			}
+			bufferedReader.close();
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

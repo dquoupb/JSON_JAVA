@@ -1,0 +1,28 @@
+package a_FileIO;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class sample {
+
+	void PrintFile(String fileName) {
+		String line = null;
+
+		try {
+			FileReader fileReader = new FileReader(fileName);
+			BufferedReader bf = new BufferedReader(fileReader);
+
+			while ((line = BufferedReader.readLine()) != null) {
+				System.out.println(line);
+			}
+			BufferedReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

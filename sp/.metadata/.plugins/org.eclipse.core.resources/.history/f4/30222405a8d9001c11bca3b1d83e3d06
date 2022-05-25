@@ -1,0 +1,17 @@
+package b_DataStructure;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+
+public class test {
+	public static void main(String[] args) {
+		// LinkedHahMap을 사용하면 저장되는 순서가 유지되는 맵이다.
+		HashMap<String, String> m = new HashMap<>();
+		
+		m.put(key, value);
+		
+	}
+}

@@ -1,0 +1,21 @@
+package b_DataStructure;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class test {
+	public static void main(String[] args) {
+		Queue<String> q = new LinkedList<>();
+		Deque<String> dq = new ArrayDeque<>();
+		
+		q.add("one");
+		q.add("two");
+		q.add("three");
+		System.out.println("Queue count = "+q.size());
+		for(String number: q)
+			System.out.println(number);
+	}
+}

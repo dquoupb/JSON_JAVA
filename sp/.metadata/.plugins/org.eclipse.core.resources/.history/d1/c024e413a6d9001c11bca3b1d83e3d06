@@ -1,0 +1,10 @@
+package b_DataStructure;
+
+import java.util.ArrayList;
+
+public class test {
+	public static void main(String[] args) {
+		ArrayList<T> L = new ArrayList<T>();
+		L.add
+	}
+}

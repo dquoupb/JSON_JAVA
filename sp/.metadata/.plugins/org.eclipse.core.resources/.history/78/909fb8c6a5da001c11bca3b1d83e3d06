@@ -1,0 +1,57 @@
+package d_Synchronization;
+
+import java.util.concurrent.locks.ReentrantLock;
+
+class ThreadClasses extends Thread { // 'Thread' Class를 상속받는다 
+	
+	static ReentrantLock lock = new ReentrantLock();
+	
+    String thread_name; 
+    public ThreadClasses(String name) { 
+        this.thread_name = name; 
+    } 
+
+    public void run() { 
+    	lock.lock();
+    	try {
+    		PrintNums(thread_name);
+    	}
+    	finally {
+    		lock.unlock();
+    	}
+    } 
+    
+    static void PrintNums(String str)
+    {
+    	int i;
+    	
+    	System.out.println(str);
+    	
+    	for (i=1; i<=30; i++)
+    	{
+    		System.out.print(i+" ");
+    	}	
+    	System.out.println();
+    }
+} 
+
+public class MutexSample { 
+    public static void main(String[] args) throws InterruptedException { 
+        ThreadClasses tc1 = new ThreadClasses("[Thread1] ");
+        ThreadClasses tc2 = new ThreadClasses("[Thread2] ");
+        tc1.start(); 
+        tc2.start();
+
+        ThreadClasses.lock.lock();
+    	try {        
+    		ThreadClasses.PrintNums("[Main]");
+    	}
+    	finally
+    	{
+    		ThreadClasses.lock.unlock();
+    	}
+        
+        tc1.join();
+        tc2.join();
+    } 
+}

@@ -1,0 +1,26 @@
+package e_EncryptionNDecryption;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Base64.*;
+
+public class Base64Prac {
+	void Base64(String TestString) throws UnsupportedEncodingException {
+		// Base64 인코더
+		Encoder encoder = java.util.Base64.getEncoder();
+		// Base64 인코딩 후 문자열로 변환
+		String encodedString = encoder.encodeToString(TestString.getBytes("UTF-8"));
+		System.out.println(encodedString);
+		
+		// Base64 디코더
+		Decoder decoder = java.util.Base64.getDecoder();
+		// Base64 디코딩
+		byte[] decodedBytes = decoder.decode(encodedString);
+		// 디코딩 결과를 문자열로 변환
+		String decodedString = new String(decodedBytes, "UTF-8");
+		System.out.println(decodedString);
+	}
+	
+	public static void main(String[] args) {
+		Base64("This is a Base64 test.");
+	}
+}

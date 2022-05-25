@@ -1,0 +1,28 @@
+package b_DataStructure;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+
+public class test {
+	public static void main(String[] args) {
+		// LinkedHahMap을 사용하면 저장되는 순서가 유지되는 맵이다.
+		// SortedHashMap을 사용하면  Key로 정렬하여 저장한다.
+		// ConcurrentHashMap를 사용하면 Thread-safe하게 사용한다.
+		HashMap<String, String> m = new HashMap<>();
+		
+		m.put("kim@gmail.com", "Kim");
+		m.put("Lee@gmail.com", "Lee");
+		m.put("Choi@gmail.com", "Choi");
+		m.put("Jung@gmail.com", "Jung");
+		
+		for(String key: m.keySet())
+			System.out.println(key+" : "+m.get(key));
+		System.out.println();
+		
+		m.replace("Jung@gmail.com","jjj");
+		System.out.println(m.get("Jung@gmail.com"));
+	}
+}

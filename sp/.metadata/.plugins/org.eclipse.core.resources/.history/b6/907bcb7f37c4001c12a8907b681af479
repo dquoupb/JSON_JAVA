@@ -1,0 +1,119 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+// INPUT 폴더 하위에 위치한 파일들의 파일명(상대경로 포함), 크기를 콘솔 하면에 출력
+// INPUT 폴더 하위에 위치한 파일들 중 크기가 3KB가 넘는 파일들은 모두 OUTPUT 폴더로 복사하기
+
+// 받은 INPUT폴더를 소스 파일(폴더) 안에 위치시켜야한다.
+public class InputFilePrac {
+	static String rootPath = ".\\Input";
+
+	public static void main(String[] args) {
+		FileSearchAll(rootPath);
+	}
+
+	static public void PrintFile(String fileName) {
+		String line = null;
+		try {
+			FileReader fileReader = new FileReader(fileName);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			while ((line = bufferedReader.readLine()) != null) {
+				System.out.println(line);
+			}
+			bufferedReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	static public void CopyFile(String inputFile, String outputFile) {
+		final int BUFFER_SIZE = 4096;
+		int readLen;
+		try {
+			InputStream inputStream = new FileInputStream(inputFile);
+			OutputStream outputStream = new FileOutputStream(outputFile);
+
+			byte[] buffer = new byte[BUFFER_SIZE];
+
+			while ((readLen = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, readLen);
+			}
+
+			inputStream.close();
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void MyCopyFile(String partPath, String filename) {
+		final int BUFFER_SIZE = 512;
+		int readLen;
+		try {
+			// Create Folder
+			File destFolder = new File(".\\OUTPUT" + partPath);
+			if (!destFolder.exists()) {
+				destFolder.mkdirs();
+			}
+
+			// Copy File
+			InputStream inputStream = new FileInputStream(".\\INPUT" + partPath + "\\" + filename);
+			OutputStream outputStream = new FileOutputStream(".\\OUTPUT" + partPath + "\\" + filename);
+
+			byte[] buffer = new byte[BUFFER_SIZE];
+
+			while ((readLen = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, readLen);
+			}
+
+			inputStream.close();
+			outputStream.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	// 파일/디렉토리 리스트 출력
+	static public void FileDirList() {
+		File directory = new File(".");
+		File[] fList = directory.listFiles();
+
+		for (File file : fList) {
+			if (file.isDirectory()) {
+				System.out.println("[" + file.getName() + "]");
+			} else {
+				System.out.println(file.getName());
+			}
+		}
+	}
+
+	// 파일/디렉토리 리스트 출력 - 재귀호출을 이용한 하위 폴더 파일 탐색
+	public static void FileSearchAll(String path) {
+		File directory = new File(path);
+		File[] fList = directory.listFiles();
+
+		for (File file : fList) {
+			if (file.isDirectory()) {
+				FileSearchAll(file.getPath());
+			} else {
+				String partPath = path.substring(rootPath.length());
+				System.out.println("." + partPath + "\\" + file.getName());
+				if (file.length() > 3 * 1024) {
+					MyCopyFile(partPath, file.getName());
+				}
+			}
+		}
+	}
+}

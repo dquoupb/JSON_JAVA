@@ -1,0 +1,27 @@
+package card.validator.client;
+
+import java.util.Scanner;
+
+public class ValidatorLauncher {
+	public static void main(String[] args) {
+		Validator validator = new Validator();
+		Scanner sc = new Scanner(System.in);
+		String strId, strPassword;
+		
+		while(true) {
+			if(sc.hasNext()) {
+				String [] words = sc.nextLine().split(" "); // id, password
+				
+				strId = words[0]; 
+				strPassword = words[1]; 
+	
+				if (validator.login(strId, strPassword)) {
+					System.out.println("LOGIN SUCCESS");
+					break;
+				} else {
+					System.out.println("LOGIN FAIL");
+				}
+			}
+		}
+	} 
+}

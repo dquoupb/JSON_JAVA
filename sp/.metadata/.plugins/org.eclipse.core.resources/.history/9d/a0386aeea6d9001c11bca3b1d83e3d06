@@ -1,0 +1,64 @@
+package b_DataStructure;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+
+public class test {
+	public static void main(String[] args) {
+		// ***출력하는 방법 3가지
+		ArrayList<String> list = new ArrayList<>();
+		list.add("Kim");
+		list.add("Lee");
+		list.add("Choi");
+		list.add("Park");
+		
+		//1
+		for(String name: list) {
+			System.out.println(name);
+		}
+		System.out.println();
+		
+		//2
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+		System.out.println();
+		
+		//3
+		Iterator<String> itr = list.iterator();
+		while(itr.hasNext())
+			System.out.println(itr.next());
+		
+		
+		// ***정렬하는 방법 3가지
+		
+		// 1 오름차순
+		Collections.sort(list);
+		for(String name: list) {
+			System.out.println(name);
+		}
+		System.out.println();
+		
+		// 2 내림차순
+		Comparator<String> com = new Comparator<String>() {
+			public int compare(String o1, String o2) {
+				return(o2.compareTo(o1));
+			}
+		};
+		Collections.sort(list, com);
+		for(String name: list) {
+			System.out.println(name);
+		}
+		System.out.println();
+		
+		// 3 오름차순
+		Collections.sort(list, (g1, g2) -> g1.compareTo(g2));
+		for(String name: list) {
+			System.out.println(name);
+		}
+		System.out.println();
+		
+	}
+}

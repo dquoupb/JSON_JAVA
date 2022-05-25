@@ -1,0 +1,33 @@
+package b_DataStructure;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+
+public class test {
+	public static void main(String[] args) {
+		ArrayList<String> list = new ArrayList<>();
+		list.add("Kim");
+		list.add("Lee");
+		list.add("Choi");
+		list.add("Park");
+		
+		for(String name: list) {
+			System.out.println(name);
+		}
+		System.out.println();
+		
+		list.remove("Kim");
+		
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+		System.out.println();
+		
+		Iterator<String> itr = list.iterator();
+		while(itr.hasNext())
+			System.out.println(itr.next());
+		
+		//sCollections.sort(list);
+	}
+}

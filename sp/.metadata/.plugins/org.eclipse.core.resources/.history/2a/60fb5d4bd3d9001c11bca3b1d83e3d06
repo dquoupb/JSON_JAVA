@@ -1,0 +1,51 @@
+package b_DataStructure;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+
+public class QueuePrac {
+	static HashMap<String, MsgQueue> queues;
+
+	public static void main(String[] args) throws Exception {
+		queues = new HashMap<String, MsgQueue>();
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+		while (true) {
+			String line = bf.readLine();
+			String[] words = line.split(" ");
+			String command = words[0];
+			String qname = words[1];
+			switch (command) {
+			case "CREATE":
+				System.out.println();
+				break;
+			case "ENQUEUE":
+				break;
+			case "DEQUEUE":
+				break;
+			case "GET":
+				break;
+			case "SET":
+				break;
+			case "DEL":
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	static String QCreate(String name, int size) {
+		if (queues.containsKey(name))
+			return "Queue Exist";
+
+		MsgQueue q = new MsgQueue(size);
+
+		queues.put(name, q);
+
+		return "Queue Created";
+	}
+}

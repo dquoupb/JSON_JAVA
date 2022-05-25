@@ -1,0 +1,21 @@
+package a_FileIO;
+
+import java.io.File;
+
+public class test {
+	public static void main(String[] args) {
+		printFile("./INPUT");
+	}
+
+	static void printFile(String path) {
+		File directory = new File(path);
+		File[] fList = directory.listFiles();
+
+		for (File file : fList) {
+			if (file.isDirectory())
+				printFile(file.getPath());
+			else
+				System.out.println(file.getName());
+		}
+	}
+}

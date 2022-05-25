@@ -1,0 +1,33 @@
+package a_FileIO;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class sample {
+
+	void PrintFile(String fileName) {
+		String line = null;
+
+		try {
+			// 입력 스트림
+			FileReader fileReader = new FileReader(fileName);
+			// 입력 스트림으로부터 문자를 읽을 때 버퍼
+			BufferedReader bf = new BufferedReader(fileReader);
+
+			// 버퍼로부터 한 줄 씩 읽기
+			while ((line = bf.readLine()) != null) {
+				// 한 줄에 한 줄 씩 출력
+				System.out.println(line);
+			}
+			// 버퍼 리더 닫기
+			bf.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+}
